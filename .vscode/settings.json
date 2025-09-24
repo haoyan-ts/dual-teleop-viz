@@ -1,0 +1,6 @@
+{
+  "urdf-visualizer.packages": {
+      "dual_arm_test_01_description": "${workspaceFolder}/assets/dual_arm_test_01_description",
+      "dual_arm_description": "${workspaceFolder}/assets/dual_arm_description"
+  }
+}

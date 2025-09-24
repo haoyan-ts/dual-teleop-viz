@@ -1,0 +1,202 @@
+ros@docker-desktop:~$ mkdir -p ros_ws/src
+ros@docker-desktop:~$ sudo apt update
+Get:1 http://security.ubuntu.com/ubuntu focal-security InRelease [128 kB]       
+Get:2 http://archive.ubuntu.com/ubuntu focal InRelease [265 kB]
+Get:3 http://snapshots.ros.org/noetic/final/ubuntu focal InRelease [13.8 kB]
+Get:4 http://snapshots.ros.org/noetic/final/ubuntu focal/main amd64 Packages [1054 kB]
+Get:5 http://archive.ubuntu.com/ubuntu focal-updates InRelease [128 kB]
+Get:6 http://security.ubuntu.com/ubuntu focal-security/universe amd64 Packages [1308 kB]
+Get:7 http://archive.ubuntu.com/ubuntu focal-backports InRelease [128 kB]
+Get:8 http://archive.ubuntu.com/ubuntu focal/universe amd64 Packages [11.3 MB]
+Get:9 http://archive.ubuntu.com/ubuntu focal/restricted amd64 Packages [33.4 kB]
+Get:10 http://archive.ubuntu.com/ubuntu focal/multiverse amd64 Packages [177 kB]
+Get:11 http://archive.ubuntu.com/ubuntu focal/main amd64 Packages [1275 kB]
+Get:12 http://archive.ubuntu.com/ubuntu focal-updates/multiverse amd64 Packages [36.8 kB]
+Get:13 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 Packages [4919 kB]
+Get:14 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 Packages [1599 kB]    
+Get:15 http://archive.ubuntu.com/ubuntu focal-updates/restricted amd64 Packages [4998 kB]
+Get:16 http://archive.ubuntu.com/ubuntu focal-backports/universe amd64 Packages [28.6 kB]     
+Get:17 http://archive.ubuntu.com/ubuntu focal-backports/main amd64 Packages [55.2 kB]
+76% [6 Packages 450 kB/1308 kB 34%]                                                                                                                                4258 kB/s 2suGet:18 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 Packages [4801 kB]
+Get:19 http://security.ubuntu.com/ubuntu focal-security/main amd64 Packages [4432 kB]                                                                                           
+Get:20 http://security.ubuntu.com/ubuntu focal-security/multiverse amd64 Packages [33.1 kB]                                                                                     
+Fetched 36.8 MB in 48s (765 kB/s)                                                                                                                                               
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+15 packages can be upgraded. Run 'apt list --upgradable' to see them.
+ros@docker-desktop:~$ sudo apt install zip
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  unzip
+The following NEW packages will be installed:
+  unzip zip
+0 upgraded, 2 newly installed, 0 to remove and 15 not upgraded.
+Need to get 336 kB of archives.
+After this operation, 1231 kB of additional disk space will be used.
+Do you want to continue? [Y/n]
+Get:1 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 unzip amd64 6.0-25ubuntu1.2 [169 kB]
+Get:2 http://archive.ubuntu.com/ubuntu focal/main amd64 zip amd64 3.0-11build1 [167 kB]
+Fetched 336 kB in 3s (98.8 kB/s)
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package unzip.
+(Reading database ... 113423 files and directories currently installed.)                                                                                                        
+Preparing to unpack .../unzip_6.0-25ubuntu1.2_amd64.deb ...                                                                                                                     
+Unpacking unzip (6.0-25ubuntu1.2) ...                                                                                                                                           
+Selecting previously unselected package zip.                                                                                                                                    
+Preparing to unpack .../zip_3.0-11build1_amd64.deb ...                                                                                                                          
+Unpacking zip (3.0-11build1) ...                                                                                                                                                
+Setting up unzip (6.0-25ubuntu1.2) ...                                                                                                                                          
+Setting up zip (3.0-11build1) ...                                                                                                                                               
+Processing triggers for mime-support (3.64ubuntu1) ...                                                                                                                          
+ros@docker-desktop:~$ cp -r assets/ ros_ws/src/                                                                                                                                 
+cp: cannot stat 'assets/': No such file or directory                                                                                                                            
+ros@docker-desktop:~$ cp -r assets ros_ws/src
+cp: cannot stat 'assets': No such file or directory
+ros@docker-desktop:~$ cp -r /assets/* ros_ws/src
+ros@docker-desktop:~$ ls ros_ws/src/
+dual  dual_v2
+ros@docker-desktop:~$ cd ros_ws/
+ros@docker-desktop:~/ros_ws$ catkin_make
+Base path: /home/ros/ros_ws
+Source space: /home/ros/ros_ws/src
+Build space: /home/ros/ros_ws/build
+Devel space: /home/ros/ros_ws/devel
+Install space: /home/ros/ros_ws/install
+Creating symlink "/home/ros/ros_ws/src/CMakeLists.txt" pointing to "/opt/ros/noetic/share/catkin/cmake/toplevel.cmake"
+WARNING: Package name "20250914_test_description" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, underscores, and dashes.
+####
+#### Running command: "cmake /home/ros/ros_ws/src -DCATKIN_DEVEL_PREFIX=/home/ros/ros_ws/devel -DCMAKE_INSTALL_PREFIX=/home/ros/ros_ws/install -G Unix Makefiles" in "/home/ros/ros_ws/build"
+####
+-- The C compiler identification is GNU 9.4.0
+-- The CXX compiler identification is GNU 9.4.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Using CATKIN_DEVEL_PREFIX: /home/ros/ros_ws/devel
+-- Using CMAKE_PREFIX_PATH: /opt/ros/noetic
+-- This workspace overlays: /opt/ros/noetic
+-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Using Debian Python package layout
+-- Found PY_em: /usr/lib/python3/dist-packages/em.py  
+-- Using empy: /usr/lib/python3/dist-packages/em.py
+-- Using CATKIN_ENABLE_TESTING: ON
+-- Call enable_testing()
+-- Using CATKIN_TEST_RESULTS_DIR: /home/ros/ros_ws/build/test_results
+-- Forcing gtest/gmock from source, though one was otherwise available.
+-- Found gtest sources under '/usr/src/googletest': gtests will be built
+-- Found gmock sources under '/usr/src/googletest': gmock will be built
+-- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") 
+-- Found Threads: TRUE  
+-- Using Python nosetests: /usr/bin/nosetests3
+-- catkin 0.8.12
+-- BUILD_SHARED_LIBS is on
+-- BUILD_SHARED_LIBS is on
+WARNING: Package name "20250914_test_description" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, underscores, and dashes.
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- ~~  traversing 1 packages in topological order:
+-- ~~  - 20250914_test_description
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- +++ processing catkin package: '20250914_test_description'
+-- ==> add_subdirectory(dual_v2)
+WARNING: Package name "20250914_test_description" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, underscores, and dashes.
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/ros/ros_ws/build
+####
+#### Running command: "make -j16 -l16" in "/home/ros/ros_ws/build"
+####
+ros@docker-desktop:~/ros_ws$ xacro src/dual_v2/urdf/
+20250914_test.gazebo  20250914_test.trans   20250914_test.xacro   materials.xacro
+ros@docker-desktop:~/ros_ws$ xacro src/dual_v2/urdf/20250914_test.xacro > model.urdf
+'utf-8' codec can't decode byte 0x89 in position 2673: invalid start byte
+when processing file: src/dual_v2/urdf/20250914_test.xacro
+ros@docker-desktop:~/ros_ws$ cp -r /assets/dual_v3 src/dual_v3
+ros@docker-desktop:~/ros_ws$ ls src/
+CMakeLists.txt  dual  dual_v2  dual_v3
+ros@docker-desktop:~/ros_ws$ cd src/dual_v
+bash: cd: src/dual_v: No such file or directory
+ros@docker-desktop:~/ros_ws$ cd src/dual_v3
+ros@docker-desktop:~/ros_ws/src/dual_v3$ ls
+CMakeLists.txt  LICENSE  launch  meshes  package.xml  urdf
+ros@docker-desktop:~/ros_ws/src/dual_v3$ cd ../..
+ros@docker-desktop:~/ros_ws$ xacro src/dual_v3/urdf/ > model.urdf
+20250918_test.gazebo  20250918_test.trans   20250918_test.xacro   materials.xacro
+ros@docker-desktop:~/ros_ws$ xacro src/dual_v3/urdf/20250918_test.xacro > model.urdf
+resource not found: 20250918_test_description
+ROS path [0]=/opt/ros/noetic/share/ros
+ROS path [1]=/opt/ros/noetic/share
+when processing file: src/dual_v3/urdf/20250918_test.xacro
+ros@docker-desktop:~/ros_ws$ catkin_make
+Base path: /home/ros/ros_ws
+Source space: /home/ros/ros_ws/src
+Build space: /home/ros/ros_ws/build
+Devel space: /home/ros/ros_ws/devel
+Install space: /home/ros/ros_ws/install
+WARNING: Package name "20250918_test_description" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, underscores, and dashes.
+WARNING: Package name "20250914_test_description" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, underscores, and dashes.
+####
+#### Running command: "cmake /home/ros/ros_ws/src -DCATKIN_DEVEL_PREFIX=/home/ros/ros_ws/devel -DCMAKE_INSTALL_PREFIX=/home/ros/ros_ws/install -G Unix Makefiles" in "/home/ros/ros_ws/build"
+####
+-- Using CATKIN_DEVEL_PREFIX: /home/ros/ros_ws/devel
+-- Using CMAKE_PREFIX_PATH: /opt/ros/noetic
+-- This workspace overlays: /opt/ros/noetic
+-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Using Debian Python package layout
+-- Using empy: /usr/lib/python3/dist-packages/em.py
+-- Using CATKIN_ENABLE_TESTING: ON
+-- Call enable_testing()
+-- Using CATKIN_TEST_RESULTS_DIR: /home/ros/ros_ws/build/test_results
+-- Forcing gtest/gmock from source, though one was otherwise available.
+-- Found gtest sources under '/usr/src/googletest': gtests will be built
+-- Found gmock sources under '/usr/src/googletest': gmock will be built
+-- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") 
+-- Using Python nosetests: /usr/bin/nosetests3
+-- catkin 0.8.12
+-- BUILD_SHARED_LIBS is on
+-- BUILD_SHARED_LIBS is on
+WARNING: Package name "20250918_test_description" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, underscores, and dashes.
+WARNING: Package name "20250914_test_description" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, underscores, and dashes.
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- ~~  traversing 2 packages in topological order:
+-- ~~  - 20250914_test_description
+-- ~~  - 20250918_test_description
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- +++ processing catkin package: '20250914_test_description'
+-- ==> add_subdirectory(dual_v2)
+WARNING: Package name "20250914_test_description" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, underscores, and dashes.
+-- +++ processing catkin package: '20250918_test_description'
+-- ==> add_subdirectory(dual_v3)
+WARNING: Package name "20250918_test_description" does not follow the naming conventions. It should start with a lower case letter and only contain lower case letters, digits, underscores, and dashes.
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/ros/ros_ws/build
+####
+#### Running command: "make -j16 -l16" in "/home/ros/ros_ws/build"
+####
+ros@docker-desktop:~/ros_ws$ xacro src/dual_v3/urdf/20250918_test.xacro > model.urdf
+resource not found: 20250918_test_description
+ROS path [0]=/opt/ros/noetic/share/ros
+ROS path [1]=/opt/ros/noetic/share
+when processing file: src/dual_v3/urdf/20250918_test.xacro
+ros@docker-desktop:~/ros_ws$ source ~/ros_ws/
+.catkin_workspace  build/             devel/             model.urdf         src/
+ros@docker-desktop:~/ros_ws$ source ~/ros_ws/devel/
+.built_by         .rosinstall       env.sh            local_setup.bash  local_setup.sh    setup.bash        setup.sh          share/
+.catkin           _setup_util.py    lib/              local_setup.fish  local_setup.zsh   setup.fish        setup.zsh
+ros@docker-desktop:~/ros_ws$ source ~/ros_ws/devel/setup.bash 
+ros@docker-desktop:~/ros_ws$ xacro src/dual_v3/urdf/20250918_test.xacro > model.urdf
+ros@docker-desktop:~/ros_ws$ 

@@ -1,0 +1,108 @@
+<?xml version="1.0" ?>
+<robot name="dual_arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find dual_arm_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find dual_arm_description)/urdf/dual_arm.trans" />
+<xacro:include filename="$(find dual_arm_description)/urdf/dual_arm.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="3.9680686415535705e-05 -0.004421128953433873 0.4642896462729474" rpy="0 0 0"/>
+    <mass value="121.49724874784835"/>
+    <inertia ixx="20.409562" iyy="21.64045" izz="3.857874" ixy="0.000835" iyz="0.240067" ixz="0.001016"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.0 -0.0" rpy="0.0 -0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://dual_arm_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.0 -0.0" rpy="0.0 -0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://dual_arm_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="L_1">
+  <inertial>
+    <origin xyz="0.2178261897471836 -0.05256210683074138 0.9426576693604092" rpy="0 0 0"/>
+    <mass value="0.15413438956674883"/>
+    <inertia ixx="2.6e-05" iyy="2.1e-05" izz="2e-05" ixy="-4e-06" iyz="-2e-06" ixz="4e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.0 -0.015" rpy="0.0 -0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://dual_arm_description/meshes/L_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.0 -0.015" rpy="0.0 -0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://dual_arm_description/meshes/L_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="R_1">
+  <inertial>
+    <origin xyz="-0.21782618974718296 -0.052562105830744235 0.942657669360409" rpy="0 0 0"/>
+    <mass value="0.15413438956674883"/>
+    <inertia ixx="2.6e-05" iyy="2.1e-05" izz="2e-05" ixy="4e-06" iyz="-2e-06" ixz="-4e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 -0.0 -0.015" rpy="0.0 -0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://dual_arm_description/meshes/R_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 -0.0 -0.015" rpy="0.0 -0.0 0.0"/>
+    <geometry>
+      <mesh filename="package://dual_arm_description/meshes/R_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<transmission name="Revolute 9_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="Revolute 9">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="Revolute 9_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<joint name="Revolute 9" type="revolute">
+  <origin xyz="0.223407 -0.055779 0.945428" rpy="0.030792 -1.221558 2.585226"/>
+  <parent link="base_link"/>
+  <child link="L_1"/>
+  <axis xyz="0 0 1"/>
+  <limit upper="3.141593" lower="-3.141593" effort="100" velocity="100"/>
+</joint>
+
+<transmission name="Revolute 10_tran">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="Revolute 10">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="Revolute 10_actr">
+    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+<joint name="Revolute 10" type="revolute">
+  <origin xyz="-0.223407 -0.055779 0.945428" rpy="-0.030792 -1.221558 0.556367"/>
+  <parent link="base_link"/>
+  <child link="R_1"/>
+  <axis xyz="0 0 1"/>
+  <limit upper="3.141593" lower="-3.141593" effort="100" velocity="100"/>
+</joint>
+
+</robot>
