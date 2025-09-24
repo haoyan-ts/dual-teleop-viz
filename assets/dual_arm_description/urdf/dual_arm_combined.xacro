@@ -1,0 +1,82 @@
+<?xml version="1.0" ?>
+<!--
+  Dual Arm Combined Robot Description (XACRO)
+  
+  This file defines a dual-arm robotic system combining:
+  - A central base platform (dual_arm base)
+  - Two Nova2 robotic arms (left and right)
+  
+  The system is designed for dual-arm manipulation tasks with synchronized
+  or independent control of both manipulators.
+  
+  Author: Generated for dual-teleop-viz project
+  Date: September 2025
+-->
+<robot name="dual_arm_combined" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- ========================================================================= -->
+  <!-- XACRO PROPERTIES AND PARAMETERS -->
+  <!-- ========================================================================= -->
+  
+  <!-- System configuration parameters -->
+  <xacro:property name="PI" value="3.14159265359"/>
+  <!-- ========================================================================= -->
+  <!-- INCLUDE FILES -->
+  <!-- ========================================================================= -->
+  
+  <!-- Include base platform description -->
+  <xacro:include filename="$(find dual_arm_description)/urdf/dual_arm_base.xacro" />
+  
+  <!-- Include Nova2 robot arm description -->
+  <xacro:include filename="$(find dual_arm_description)/urdf/nova2_robot.xacro" />
+  
+  <!-- Include materials definitions -->
+  <xacro:include filename="$(find dual_arm_description)/urdf/materials.xacro" />
+  
+
+  <!-- ========================================================================= -->
+  <!-- MAIN ROBOT MACRO DEFINITION -->
+  <!-- ========================================================================= -->
+
+  <xacro:macro name="dual_arm_combined_robot" params="">
+
+    <!-- Base platform instantiation -->
+    <!-- This provides the central mounting platform for both arms -->
+    <xacro:dual_arm_base />
+    
+    <!-- Left arm instantiation -->
+    <!-- Nova2 robotic arm mounted on the left side of the base platform -->
+    <xacro:nova2_robot 
+      prefix="left_" 
+      base_link_name="left_base"/>
+    
+    <!-- Right arm instantiation -->  
+    <!-- Nova2 robotic arm mounted on the right side of the base platform -->
+    <xacro:nova2_robot 
+      prefix="right_" 
+      base_link_name="right_base"/>
+    
+    <!-- Joint connecting left arm to base platform -->
+    <joint name="left_arm_base_joint" type="fixed">
+      <parent link="L_1"/>
+      <child link="left_dummy_link"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+    
+    <!-- Joint connecting right arm to base platform -->
+    <joint name="right_arm_base_joint" type="fixed">
+      <parent link="R_1"/>
+      <child link="right_dummy_link"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+  </xacro:macro>
+
+  <!-- ========================================================================= -->
+  <!-- ROBOT INSTANTIATION -->
+  <!-- ========================================================================= -->
+  
+  <!-- Instantiate the complete dual arm robot system -->
+  <xacro:dual_arm_combined_robot />
+
+</robot>

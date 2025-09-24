@@ -1,6 +1,10 @@
 {
   "urdf-visualizer.packages": {
-      "dual_arm_test_01_description": "${workspaceFolder}/assets/dual_arm_test_01_description",
-      "dual_arm_description": "${workspaceFolder}/assets/dual_arm_description"
-  }
+      "dual_arm_description": "assets/dual_arm_description",
+      "dobot_rviz": "assets/dobot_rviz",
+      "dual_arm_base_description": "assets/dual_arm_base_description"
+  },
+  "python-envs.defaultEnvManager": "ms-python.python:conda",
+  "python-envs.defaultPackageManager": "ms-python.python:conda",
+  "python-envs.pythonProjects": []
 }
