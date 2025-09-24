@@ -60,7 +60,7 @@
     <joint name="left_arm_base_joint" type="fixed">
       <parent link="L_1"/>
       <child link="left_dummy_link"/>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 ${PI}"/>
     </joint>
     
     <!-- Joint connecting right arm to base platform -->

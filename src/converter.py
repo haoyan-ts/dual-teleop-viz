@@ -438,9 +438,21 @@ class URDFToXacroConverter:
         else:
             link_elem.set("name", f"${{prefix}}{link.name}")
 
-        # Copy all child elements from original link
+        # Copy all child elements from original link, preserving structure
         for child in link.element:
-            self._copy_element_with_parameterization(child, link_elem)
+            # Create the child element wrapper (inertial, visual, collision, etc.)
+            child_elem = ET.SubElement(link_elem, child.tag)
+
+            # Copy attributes of the child element
+            for attr_name, attr_value in child.attrib.items():
+                child_elem.set(attr_name, attr_value)
+
+            # Copy the contents of the child element
+            self._copy_element_with_parameterization(child, child_elem)
+
+            # Copy text content if present
+            if child.text and child.text.strip():
+                child_elem.text = child.text
 
         return link_elem
 

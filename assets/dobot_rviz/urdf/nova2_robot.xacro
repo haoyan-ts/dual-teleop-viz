@@ -208,5 +208,5 @@
       <limit lower="-6.28" upper="6.28" effort="0" velocity="0"/>
     </joint>
   </xacro:macro>
-  <!-- <xacro:nova2_robot prefix="${prefix}" base_link_name="${base_link_name}"/> -->
+  <xacro:nova2_robot prefix="${prefix}" base_link_name="${base_link_name}"/>
 </robot>
