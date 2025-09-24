@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <robot name="dual_arm_base" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+<xacro:macro name="dual_arm_base" params="">
 <xacro:include filename="$(find dual_arm_base_description)/urdf/materials.xacro" />
 <xacro:include filename="$(find dual_arm_base_description)/urdf/dual_arm_base.trans" />
 <xacro:include filename="$(find dual_arm_base_description)/urdf/dual_arm_base.gazebo" />
@@ -78,12 +79,10 @@
   </actuator>
 </transmission>
 
-<joint name="joint_l_0" type="revolute">
+<joint name="joint_l_0" type="fixed">
   <origin xyz="0.223407 -0.055779 0.945428" rpy="0.030792 -1.221558 2.585226"/>
   <parent link="base_link"/>
   <child link="L_1"/>
-  <axis xyz="0 0 1"/>
-  <limit upper="3.141593" lower="-3.141593" effort="100" velocity="100"/>
 </joint>
 
 <transmission name="joint_r_0_tran">
@@ -97,12 +96,11 @@
   </actuator>
 </transmission>
 
-<joint name="joint_r_0" type="revolute">
+<joint name="joint_r_0" type="fixed">
   <origin xyz="-0.223407 -0.055779 0.945428" rpy="-0.030792 -1.221558 0.556367"/>
   <parent link="base_link"/>
   <child link="R_1"/>
-  <axis xyz="0 0 1"/>
-  <limit upper="3.141593" lower="-3.141593" effort="100" velocity="100"/>
 </joint>
 
+</xacro:macro>
 </robot>
