@@ -103,4 +103,5 @@
 </joint>
 
 </xacro:macro>
+<xacro:dual_arm_base />
 </robot>

@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 import os
 from glob import glob
 
-project(dual_arm_base_description)
+package_name = "dual_arm_base_description"
 
 setup(
     name=package_name,
