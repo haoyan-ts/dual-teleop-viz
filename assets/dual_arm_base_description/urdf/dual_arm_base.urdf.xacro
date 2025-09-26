@@ -1,0 +1,79 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="dual_arm_base">
+  <xacro:macro name="dual_arm_base" params="">
+    <xacro:include filename="$(find dual_arm_base_description)/urdf/materials.xacro"/>
+    <xacro:include filename="$(find dual_arm_base_description)/urdf/dual_arm_base.trans"/>
+    <xacro:include filename="$(find dual_arm_base_description)/urdf/dual_arm_base.gazebo"/>
+    <link name="base_link">
+      <inertial>
+        <origin xyz="4e-05 -0.004421 0.46429" rpy="0 0 0"/>
+        <mass value="121.497249"/>
+        <inertia ixx="20.409562" iyy="21.64045" izz="3.857874" ixy="0.000835" iyz="0.240067" ixz="0.001016"/>
+      </inertial>
+      <visual>
+        <origin xyz="-0.0 -0.0 -0.0" rpy="0.0 -0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dual_arm_base_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="-0.0 -0.0 -0.0" rpy="0.0 -0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dual_arm_base_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+    <link name="L_1">
+      <inertial>
+        <origin xyz="0.217826 -0.052562 0.942658" rpy="0 0 0"/>
+        <mass value="0.154134"/>
+        <inertia ixx="2.6e-05" iyy="2.1e-05" izz="2e-05" ixy="-4e-06" iyz="-2e-06" ixz="4e-06"/>
+      </inertial>
+      <visual>
+        <origin xyz="-0.0 -0.0 -0.015" rpy="0.0 -0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dual_arm_base_description/meshes/L_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="-0.0 -0.0 -0.015" rpy="0.0 -0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dual_arm_base_description/meshes/L_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+    <link name="R_1">
+      <inertial>
+        <origin xyz="-0.217826 -0.052562 0.942658" rpy="0 0 0"/>
+        <mass value="0.154134"/>
+        <inertia ixx="2.6e-05" iyy="2.1e-05" izz="2e-05" ixy="4e-06" iyz="-2e-06" ixz="-4e-06"/>
+      </inertial>
+      <visual>
+        <origin xyz="-0.0 -0.0 -0.015" rpy="0.0 -0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dual_arm_base_description/meshes/R_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="silver"/>
+      </visual>
+      <collision>
+        <origin xyz="-0.0 -0.0 -0.015" rpy="0.0 -0.0 0.0"/>
+        <geometry>
+          <mesh filename="package://dual_arm_base_description/meshes/R_1.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="joint_l_0" type="fixed">
+      <origin xyz="0.223407 -0.055779 0.945428" rpy="0.030792 -1.221558 2.585226"/>
+      <parent link="base_link"/>
+      <child link="L_1"/>
+    </joint>
+    <joint name="joint_r_0" type="fixed">
+      <origin xyz="-0.223407 -0.055779 0.945428" rpy="-0.030792 -1.221558 0.556367"/>
+      <parent link="base_link"/>
+      <child link="R_1"/>
+    </joint>
+  </xacro:macro>
+  <!-- <xacro:dual_arm_base /> -->
+</robot>
