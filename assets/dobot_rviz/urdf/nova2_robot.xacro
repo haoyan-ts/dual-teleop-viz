@@ -4,10 +4,9 @@
   <xacro:property name="default_color" value="0.8 0.8 0.8 1.0"/>
   <xacro:property name="package_name" value="robot_description"/>
   <xacro:property name="prefix" value=""/>
-  <xacro:property name="base_link_name" value="base_link"/>
-  <xacro:macro name="nova2_robot" params="prefix base_link_name">
+  <xacro:macro name="nova2_robot" params="prefix">
     <link name="${prefix}dummy_link"/>
-    <link name="${prefix}${base_link_name}">
+    <link name="${prefix}base_link">
       <inertial>
         <origin xyz="1.31739324853774E-05 -7.84959718585273E-06 0.0647773077977383" rpy="0 0 0"/>
         <mass value="0.939873286768969"/>
@@ -163,11 +162,11 @@
     </link>
     <joint name="${prefix}dummy_joint" type="fixed">
       <parent link="${prefix}dummy_link"/>
-      <child link="${prefix}${base_link_name}"/>
+      <child link="${prefix}base_link"/>
     </joint>
     <joint name="${prefix}joint1" type="revolute">
       <origin xyz="0 0 0.2234" rpy="0 0 0"/>
-      <parent link="${prefix}${base_link_name}"/>
+      <parent link="${prefix}base_link"/>
       <child link="${prefix}Link1"/>
       <axis xyz="0 0 1"/>
       <limit lower="-6.28" upper="6.28" effort="0" velocity="0"/>
@@ -208,5 +207,5 @@
       <limit lower="-6.28" upper="6.28" effort="0" velocity="0"/>
     </joint>
   </xacro:macro>
-  <xacro:nova2_robot prefix="${prefix}" base_link_name="${base_link_name}"/>
+  <!-- <xacro:nova2_robot prefix="${prefix}" /> -->
 </robot>
